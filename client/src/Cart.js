@@ -1,19 +1,32 @@
 import React, { Component } from "react";
+import CartItem from "./CartItem";
 
 class Cart extends Component {
     render() {
+
+        //TODO how to styling the cart?
+
         return (
             <div>
-                <h2>CART</h2>
-                <p>Cras facilisis urna ornare ex volutpat, et
-                convallis erat elementum. Ut aliquam, ipsum vitae
-                gravida suscipit, metus dui bibendum est, eget rhoncus nibh
-                metus nec massa. Maecenas hendrerit laoreet augue
-                nec molestie. Cum sociis natoque penatibus et magnis
-        dis parturient montes, nascetur ridiculus mus.</p>
 
-                <p>Duis a turpis sed lacus dapibus elementum sed eu lectus.</p>
+                <h1>Shopping Cart</h1>
+
+               
+
+                <div>
+                   
+                    {this.props.items.map((item, index) => (
+                        <CartItem key={item.id} item={item} />
+                    ))}
+                </div >
+
+                Your Total is $100
+
             </div>
+
+          
+
+            
         );
     }
 }

@@ -7,9 +7,24 @@ import {
 } from "react-router-dom";
 
 import './App.css';
-import Items from "./Items";
+import Shopping from "./Shopping";
 import Cart from "./Cart";
 import Home from "./Home";
+
+const items = [
+
+    {
+        id: 1,
+        name: "item one",
+        price: 100
+    },
+    {
+        id: 2,
+        name: "item two",
+        price: 250
+    }
+
+];
 
 function App() {
     return (
@@ -21,7 +36,7 @@ function App() {
                             <Link to="/">Home</Link>
                         </li>
                         <li>
-                            <Link to="/items">Items for Sale</Link>
+                            <Link to="/Shopping">Items for Sale</Link>
                         </li>
                         <li>
                             <Link to="/cart">Shopping Cart</Link>
@@ -31,11 +46,11 @@ function App() {
 
                 <Switch>
                    
-                    <Route path="/items">
-                        <Items />
+                    <Route path="/Shopping">
+                        <Shopping items={items} />
                     </Route>
                     <Route path="/cart">
-                        <Cart />
+                        <Cart items={items} />
                     </Route>
                     <Route path="/">
                         <Home />
