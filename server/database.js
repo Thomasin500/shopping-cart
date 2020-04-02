@@ -1,19 +1,14 @@
 const mysql = require('mysql');
-const SQL = require('sql-template-strings')
-
-
+const SQL = require('sql-template-strings');
 
 //TODO most of this should probably be in the docker image file
 //init DB and tables
-
 /*
- tables:
-
+tables:
 items
 users
 orders (join table of users to items), maybe have a flag that shows if it is complete or not
- 
-  */
+*/
 
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -66,7 +61,6 @@ connection.query(initSQL, function (error, results, fields) {
 
 connection.end();
 
-
 //TODO change this for docker
 const pool = mysql.createPool({
     host: 'localhost',
@@ -74,6 +68,5 @@ const pool = mysql.createPool({
     password: '1234',
     database: 'test_schema',
 });
-
 
 module.exports = pool;

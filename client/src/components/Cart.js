@@ -1,16 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
 import CartItem from "./CartItem";
-
-function callServer() {
-    axios.get('http://localhost:3001/shopping', {
-        params: {
-            table: 'test_table',
-        },
-    }).then((response) => {
-        console.log(response.data);
-    });
-}
 
 class Cart extends Component {
     render() {
@@ -23,7 +12,7 @@ class Cart extends Component {
                 <h1>Shopping Cart 11</h1>
 
                 
-                {callServer()}
+               
 
 
 

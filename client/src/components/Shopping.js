@@ -1,5 +1,17 @@
 import React, { Component } from "react";
+import axios from "axios";
 import ShoppingItem from "./ShoppingItem";
+
+function callServer() {
+    axios.get('http://localhost:3001/shopping', {
+        params: {
+            table: 'items',
+        },
+    }).then((response) => {
+        console.log("FRONT END RESPONSE");
+        console.log(response.data);
+    });
+}
 
 class Shopping extends Component {
 
@@ -7,6 +19,9 @@ class Shopping extends Component {
         return (
             <div>
                 <h2>Shopping for Things to Buy</h2>
+
+                {callServer()}
+
 
                 <div>
 
