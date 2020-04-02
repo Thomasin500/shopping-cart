@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* /cart routes */
 
 router.get('/cart', function (req, res, next) {
     console.log('FOUND');

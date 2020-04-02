@@ -3,7 +3,7 @@ import axios from "axios";
 import CartItem from "./CartItem";
 
 function callServer() {
-    axios.get('http://localhost:3001/test', {
+    axios.get('http://localhost:3001/shopping', {
         params: {
             table: 'test_table',
         },

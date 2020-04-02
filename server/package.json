@@ -12,6 +12,7 @@
     "express": "^4.16.4",
     "http-errors": "~1.6.3",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "sql-template-strings": "^2.2.2"
   }
 }

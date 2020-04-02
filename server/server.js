@@ -1,9 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
 const cors = require('cors');
-const mysql = require('mysql');
-
-const shoppingCartRouter = require('./routes/cart');
 
 const app = express();
 const port = 3001;
@@ -20,38 +17,19 @@ app.listen(process.env.REACT_APP_SERVER_PORT, () => {
     console.log(`App server now listening on port ${port}`);
 });
 
-//TODO change this for docker
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '1234',
-    database: 'test_schema',
-});
-
-console.log(pool)
-
 app.use(cors());
 
 //routes
-app.get('/test', (req, res) => {
-    const { table } = req.query;
-
-    pool.query(`select * from ${table}`, (err, results) => {
-        if (err) {
-            return res.send(err);
-        } else {
-            return res.send(results);
-        }
-    });
-});
+const cartRouter = require('./routes/cart');
+const shoppingRouter = require('./routes/shopping');
 
 app.get('/', (req, res) => {
     console.log('hello')
     res.send('Hello World!');
 });
 
-
-//app.use('/', indexRouter);
+app.use('/shopping', shoppingRouter);
+app.use('/cart', cartRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -66,7 +44,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-    res.json({ error: 'error' });
+    res.json({ error: err });
 });
 
 module.exports = app;
