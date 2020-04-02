@@ -2,12 +2,23 @@ const mysql = require('mysql');
 const SQL = require('sql-template-strings');
 
 //TODO most of this should probably be in the docker image file
+//TODO dont have this run every single time the app is served
 //init DB and tables
 /*
 tables:
 items
-users
-orders (join table of users to items), maybe have a flag that shows if it is complete or not
+    -name
+    -price
+currentcart
+    -itemID
+    -quantity
+orders
+    -name
+    -time
+orderitems
+    -itemID
+    -quantity
+
 */
 
 var connection = mysql.createConnection({
@@ -27,6 +38,7 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = '+00:00';
 
+/*  ITEMS TABLE  */
 DROP TABLE IF EXISTS items;
 
 CREATE TABLE items (
@@ -43,8 +55,48 @@ INSERT INTO items (id, name, price) VALUES
 
 ALTER TABLE items
 ADD PRIMARY KEY(id);
-
 ALTER TABLE items
+MODIFY id int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 5;
+
+/*  CURRENTCART TABLE  */
+DROP TABLE IF EXISTS currentCart;
+
+CREATE TABLE currentCart (
+    id int(255) NOT NULL,
+    itemID varchar(100) NOT NULL,
+    quantity int(255) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET = latin1;
+
+ALTER TABLE currentCart
+ADD PRIMARY KEY(id);
+ALTER TABLE currentCart
+MODIFY id int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 5;
+
+/*  ORDERS TABLE  */
+DROP TABLE IF EXISTS orders;
+
+CREATE TABLE orders (
+    id int(255) NOT NULL,
+    name varchar(100) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET = latin1;
+
+ALTER TABLE orders
+ADD PRIMARY KEY(id);
+ALTER TABLE orders
+MODIFY id int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 5;
+
+/*  ORDERITEMS TABLE  */
+DROP TABLE IF EXISTS orderItems;
+
+CREATE TABLE orderItems (
+    id int(255) NOT NULL,
+    itemID int(100) NOT NULL,
+    quantity int(100) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET = latin1;
+
+ALTER TABLE orderItems
+ADD PRIMARY KEY(id);
+ALTER TABLE orderItems
 MODIFY id int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 5;
 
 
