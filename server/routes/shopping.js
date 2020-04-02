@@ -4,6 +4,8 @@ const pool = require('../database');
 
 /* /shopping routes */
 
+//TODO issue with asxiops requests being doubled
+
 //returns all items available for shopping
 router.get('/', function (req, res) {
 
@@ -20,12 +22,28 @@ router.get('/', function (req, res) {
     });
 });
 
-router.get('/items', function (req, res, next) {
-    console.log('shopoing items');
+router.post('/additemtocart', function (req, res) {
 
-    res.send('Hello shopping world!');
+    console.log('add');
 
+    //const { itemID, quantity } = req.query;
 
+    const itemID = 1;
+    const quantity = 2;
+
+    console.log(req.query)
+
+    console.log(itemID)
+    console.log(quantity)
+
+    pool.query(`INSERT INTO currentcart (itemID, quantity) VALUES (${itemID}, ${quantity});`, (err, results) => {
+        console.log(results)
+        if (err) {
+            return res.send(err);
+        } else {
+            return res.send(results);
+        }
+    });
 });
 
 module.exports = router;

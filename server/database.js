@@ -3,6 +3,7 @@ const SQL = require('sql-template-strings');
 
 //TODO most of this should probably be in the docker image file
 //TODO dont have this run every single time the app is served
+//todo check camael case issue
 //init DB and tables
 /*
 tables:
@@ -38,7 +39,7 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = '+00:00';
 
-/*  ITEMS TABLE  */
+/*  items TABLE  */
 DROP TABLE IF EXISTS items;
 
 CREATE TABLE items (
@@ -58,18 +59,21 @@ ADD PRIMARY KEY(id);
 ALTER TABLE items
 MODIFY id int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 5;
 
-/*  CURRENTCART TABLE  */
-DROP TABLE IF EXISTS currentCart;
+/*  current_cart TABLE  */
+DROP TABLE IF EXISTS current_cart;
 
-CREATE TABLE currentCart (
+CREATE TABLE current_cart (
     id int(255) NOT NULL,
-    itemID varchar(100) NOT NULL,
+    item_id varchar(100) NOT NULL,
     quantity int(255) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
-ALTER TABLE currentCart
+INSERT INTO current_cart (id, item_id, quantity) VALUES
+    (1, 1, 2);
+
+ALTER TABLE current_cart
 ADD PRIMARY KEY(id);
-ALTER TABLE currentCart
+ALTER TABLE current_cart
 MODIFY id int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 5;
 
 /*  ORDERS TABLE  */
@@ -85,18 +89,18 @@ ADD PRIMARY KEY(id);
 ALTER TABLE orders
 MODIFY id int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 5;
 
-/*  ORDERITEMS TABLE  */
-DROP TABLE IF EXISTS orderItems;
+/*  order_items TABLE  */
+DROP TABLE IF EXISTS order_items;
 
-CREATE TABLE orderItems (
+CREATE TABLE order_items (
     id int(255) NOT NULL,
-    itemID int(100) NOT NULL,
+    item_id int(100) NOT NULL,
     quantity int(100) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
-ALTER TABLE orderItems
+ALTER TABLE order_items
 ADD PRIMARY KEY(id);
-ALTER TABLE orderItems
+ALTER TABLE order_items
 MODIFY id int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 5;
 
 
