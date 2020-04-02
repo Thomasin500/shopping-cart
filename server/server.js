@@ -1,23 +1,14 @@
 const createError = require('http-errors');
 const express = require('express');
 const cors = require('cors');
-
 const app = express();
 const port = 3001;
 
 //needed to serve up css and front end tests
 app.use(express.static('public'));
+app.use(cors());
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
-/////////////////////////////////////////
-////////////////////////
-
-app.listen(process.env.REACT_APP_SERVER_PORT, () => {
-    //todo bring back process.env for docker
-    console.log(`App server now listening on port ${port}`);
-});
-
-app.use(cors());
 
 //routes
 const cartRouter = require('./routes/cart');

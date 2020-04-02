@@ -2,17 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import ShoppingItem from "./ShoppingItem";
 
-function callServer() {
-    axios.get('http://localhost:3001/shopping', {
-        params: {
-            table: 'items',
-        },
-    }).then((response) => {
-        console.log("FRONT END RESPONSE");
-        console.log(response.data);
-    });
-}
-
 class Shopping extends Component {
 
     constructor(props) {
@@ -24,8 +13,7 @@ class Shopping extends Component {
 
     componentDidMount() {
         axios.get('http://localhost:3001/shopping', {}).then((response) => {
-            console.log("FRONT END RESPONSE");
-            console.log(response.data);
+            console.log(response.data)
             this.setState({ items: response.data });
         });
     }
@@ -38,12 +26,8 @@ class Shopping extends Component {
             <div>
                 <h2>Shopping for Things to Buy</h2>
 
-                {callServer()}
-
-
                 <div>
-
-                    {items.map((item, index) => (
+                    {items.map( item => (
                         <ShoppingItem key={item.id} item={item} />
                     ))}
                 </div >

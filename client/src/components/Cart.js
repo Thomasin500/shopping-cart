@@ -2,22 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import CartItem from "./CartItem";
 
-function getCartItems() {
-
-    let cartItems = [];
-
-    axios.get('http://localhost:3001/cart', {
-    }).then((response) => {
-        console.log("FRONT END RESPONSE");
-        console.log(response.data);
-        cartItems = response.data;
-    });
-
-    debugger
-
-    return cartItems;
-}
-
 class Cart extends Component {
 
     constructor(props) {
@@ -29,8 +13,7 @@ class Cart extends Component {
 
     componentDidMount() {
         axios.get('http://localhost:3001/cart', {}).then((response) => {
-            console.log("FRONT END RESPONSE");
-            console.log(response.data);
+            console.log(response.data)
             this.setState({ items: response.data });
         });
     }
@@ -44,8 +27,8 @@ class Cart extends Component {
             <div>
                 <h1>Shopping Cart</h1>
                 <div>               
-                    {items.map((item, index) => (
-                        <CartItem key={item.id} item={item} />
+                    {items.map( item => (
+                        <CartItem key={item.item_id} item={item} />
                     ))}
                 </div >
                 Your Total is $100

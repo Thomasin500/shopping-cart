@@ -11,21 +11,6 @@ import Shopping from "../components/Shopping";
 import Cart from "../components/Cart";
 import Home from "../components/Home";
 
-const items = [
-
-    {
-        id: 1,
-        name: "item one",
-        price: 100
-    },
-    {
-        id: 2,
-        name: "item two",
-        price: 250
-    }
-
-];
-
 function App() {
     return (
         <Router>
@@ -47,7 +32,7 @@ function App() {
                 <Switch>
                    
                     <Route path="/Shopping">
-                        <Shopping items={items} />
+                        <Shopping />
                     </Route>
                     <Route path="/cart">
                         <Cart />

@@ -4,13 +4,7 @@ const pool = require('../database');
 
 /* /shopping routes */
 
-//TODO issue with axios requests being doubled
-
-//returns all items available for shopping
 router.get('/', function (req, res) {
-
-    console.log('ROUTE: /shopping/');
-
     pool.query(`select * from items`, (err, results) => {
         if (err) {
             return res.send(err);
