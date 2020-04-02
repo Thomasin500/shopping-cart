@@ -15,7 +15,25 @@ function callServer() {
 
 class Shopping extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: []
+        };
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:3001/shopping', {}).then((response) => {
+            console.log("FRONT END RESPONSE");
+            console.log(response.data);
+            this.setState({ items: response.data });
+        });
+    }
+
     render() {
+
+        const { items } = this.state;
+
         return (
             <div>
                 <h2>Shopping for Things to Buy</h2>
@@ -25,7 +43,7 @@ class Shopping extends Component {
 
                 <div>
 
-                    {this.props.items.map((item, index) => (
+                    {items.map((item, index) => (
                         <ShoppingItem key={item.id} item={item} />
                     ))}
                 </div >

@@ -69,7 +69,8 @@ CREATE TABLE current_cart (
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
 INSERT INTO current_cart (id, item_id, quantity) VALUES
-    (1, 1, 2);
+    (1, 1, 2),
+    (2, 2, 3);
 
 ALTER TABLE current_cart
 ADD PRIMARY KEY(id);

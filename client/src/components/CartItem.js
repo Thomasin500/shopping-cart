@@ -7,6 +7,8 @@ class CartItem extends Component {
     //TODO ability to edit quantity
 
     render() {
+        debugger;
+
         return (
             <div>
                 name: {this.props.item.name}

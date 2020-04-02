@@ -1,19 +1,17 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const pool = require('../database');
 
 /* /shopping routes */
 
-//TODO issue with asxiops requests being doubled
+//TODO issue with axios requests being doubled
 
 //returns all items available for shopping
 router.get('/', function (req, res) {
 
     console.log('ROUTE: /shopping/');
 
-    const { table } = req.query;
-
-    pool.query(`select * from ${table}`, (err, results) => {
+    pool.query(`select * from items`, (err, results) => {
         if (err) {
             return res.send(err);
         } else {
