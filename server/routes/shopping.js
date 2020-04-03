@@ -14,21 +14,14 @@ router.get('/', function (req, res) {
     });
 });
 
-router.post('/additemtocart', function (req, res) {
+router.post('/additemtocart/:itemId', function (req, res) {
 
-    console.log('add');
+    const { itemId } = req.params;
 
-    //const { itemID, quantity } = req.query;
+    //TODO quantity
+    const quantity = 1;
 
-    const itemID = 1;
-    const quantity = 2;
-
-    console.log(req.query)
-
-    console.log(itemID)
-    console.log(quantity)
-
-    pool.query(`INSERT INTO currentcart (itemID, quantity) VALUES (${itemID}, ${quantity});`, (err, results) => {
+    pool.query(`INSERT INTO current_cart (item_id, quantity) VALUES (${itemId}, ${quantity});`, (err, results) => {
         console.log(results)
         if (err) {
             return res.send(err);
