@@ -1,18 +1,20 @@
-import React, { Component } from "react";
+import React from "react";
+import formatCurrency from "../helpers/formatters"
 
-class CartItem extends Component {
+//todo styling
+const CartItem = props => {
 
-    //each item should have an individual price, quantity, total price, name, descripition, etc
-    //TODO ability to edit quantity
+    const { item, changeQuantity } = props;
 
-    render() {
-        return (
-            <div>
-                name: {this.props.item.name}
-                price: {this.props.item.price}
-            </div>
-        );
-    }
+    return (
+        <div>
+            name: { item.name }
+            price: { formatCurrency(item.price) }
+            quantity: { item.quantity }
+            <button onClick={ () => changeQuantity(-1, props.index, item.item_id) }> Decrement Quantity </button>
+            <button onClick={ () => changeQuantity(1, props.index, item.item_id) }> Increment Quantity </button>
+        </div>
+    );
 }
 
 export default CartItem;

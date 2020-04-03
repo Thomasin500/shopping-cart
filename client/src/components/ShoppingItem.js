@@ -3,7 +3,6 @@ import axios from "axios";
 
 function ShoppingItem(props) {
 
-
     //each item should have an individual price, quantity, total price, name, description, etc
     //TODO ability to edit quantity
 

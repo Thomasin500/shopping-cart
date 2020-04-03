@@ -14,4 +14,21 @@ router.get('/', function (req, res) {
     });
 });
 
+router.put('/changeitemquantity/:itemId/:amount', function (req, res) {
+
+    const { amount, itemId } = req.params;
+
+    console.log(req.params);
+    console.log(123)
+
+    pool.query(`UPDATE current_cart SET quantity = quantity + ${amount} WHERE item_id = ${itemId}`, (err, results) => {
+        console.log(results)
+        if (err) {
+            return res.send(err);
+        } else {
+            return res.send(results);
+        }
+    });
+});
+
 module.exports = router;
