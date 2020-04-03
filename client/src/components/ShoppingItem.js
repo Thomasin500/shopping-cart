@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import formatCurrency from "../helpers/formatters"
 
 function ShoppingItem(props) {
 
@@ -17,7 +18,7 @@ function ShoppingItem(props) {
     return (
         <div>
             name: {props.item.name}
-            price: {props.item.price}
+            price: { formatCurrency(props.item.price) }
             <button onClick={() => addItemToCart(props.item)}> Click me </button>
         </div>
     );
