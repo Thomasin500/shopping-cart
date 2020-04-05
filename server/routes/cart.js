@@ -18,11 +18,20 @@ router.put('/changeitemquantity/:itemId/:amount', function (req, res) {
 
     const { amount, itemId } = req.params;
 
-    console.log(req.params);
-    console.log(123)
-
     pool.query(`UPDATE current_cart SET quantity = quantity + ${amount} WHERE item_id = ${itemId}`, (err, results) => {
-        console.log(results)
+        if (err) {
+            return res.send(err);
+        } else {
+            return res.send(results);
+        }
+    });
+});
+
+router.delete('/removefromcart/:itemId', function (req, res) {
+
+    const { itemId } = req.params;
+
+    pool.query(`DELETE FROM current_cart WHERE item_id = ${itemId}`, (err, results) => {
         if (err) {
             return res.send(err);
         } else {

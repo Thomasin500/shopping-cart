@@ -4,7 +4,9 @@ import formatCurrency from "../helpers/formatters"
 //todo styling
 const CartItem = props => {
 
-    const { item, changeQuantity } = props;
+    //TODO remove item from cart
+
+    const { item, changeQuantity, removeFromCart } = props;
 
     return (
         <div>
@@ -12,7 +14,8 @@ const CartItem = props => {
             price: { formatCurrency(item.price) }
             quantity: { item.quantity }
             <button onClick={ () => changeQuantity(-1, props.index, item.item_id) }> Decrement Quantity </button>
-            <button onClick={ () => changeQuantity(1, props.index, item.item_id) }> Increment Quantity </button>
+            <button onClick={() => changeQuantity(1, props.index, item.item_id)}> Increment Quantity </button>
+            <button onClick={() => removeFromCart(props.index, item.item_id)}> Remove From Cart </button>
         </div>
     );
 }

@@ -28,6 +28,14 @@ class Cart extends Component {
         })
     }
 
+    removeFromCart = (item_index, item_id) => {
+        axios.delete(`http://localhost:3001/cart/removefromcart/${item_id}`).then((response) => {
+            const updatedItems = this.state.items.slice();
+            updatedItems.splice(item_index, 1);
+            this.setState({ items: updatedItems });
+        })
+    }
+
     totalPrice = () => {
         return this.state.items.reduce((sum, item) => sum + (item.quantity * item.price), 0);
     }
@@ -40,20 +48,27 @@ class Cart extends Component {
         //todo format price and money in general
 
         //todo empty cart mewssage
-        return (
 
+        if (items.length) {
+            return (
+                <div>
+                    <h1>Shopping Cart</h1>
 
-            <div>
-                <h1>Shopping Cart</h1>
-
-                <div>               
-                    {items.map( (item, index) => (
-                        <CartItem key={index} index={ index } item={ item } changeQuantity={ this.changeQuantity } />
-                    ))}
-                </div >
-                Your Total is { formatCurrency(this.totalPrice()) }
-            </div>
-        );
+                    <div>
+                        {items.map((item, index) => (
+                            <CartItem key={index} index={index} item={item} removeFromCart={this.removeFromCart} changeQuantity={this.changeQuantity} />
+                        ))}
+                    </div >
+                Your Total is { formatCurrency(this.totalPrice())}
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <h1>Welcome to your Shopping Cart! Please add items to see your order here</h1>
+                </div>
+            );
+        }
     }
 }
 
