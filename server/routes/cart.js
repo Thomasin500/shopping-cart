@@ -27,6 +27,16 @@ router.put('/changeitemquantity/:itemId/:amount', function (req, res) {
     });
 });
 
+router.post('/order', function (req, res) {
+
+    //create a new order row
+    //for each current cart item, add an entry in order items with its order id pointing to the order we just made
+    //empty the cart
+
+
+
+});
+
 router.delete('/removefromcart/:itemId', function (req, res) {
 
     const { itemId } = req.params;

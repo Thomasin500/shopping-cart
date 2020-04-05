@@ -10,6 +10,7 @@ import './App.css';
 import Shopping from "../components/Shopping";
 import Cart from "../components/Cart";
 import Home from "../components/Home";
+import Checkout from "../components/Checkout"
 
 function App() {
     return (
@@ -21,7 +22,7 @@ function App() {
                             <Link to="/">Home</Link>
                         </li>
                         <li>
-                            <Link to="/Shopping">Items for Sale</Link>
+                            <Link to="/shopping">Items for Sale</Link>
                         </li>
                         <li>
                             <Link to="/cart">Shopping Cart</Link>
@@ -31,11 +32,14 @@ function App() {
 
                 <Switch>
                    
-                    <Route path="/Shopping">
+                    <Route path="/shopping">
                         <Shopping />
                     </Route>
                     <Route path="/cart">
                         <Cart />
+                    </Route>
+                    <Route path="/checkout">
+                        <Checkout />
                     </Route>
                     <Route path="/">
                         <Home />

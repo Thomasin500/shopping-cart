@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import CartItem from "./CartItem";
 import formatCurrency from "../helpers/formatters"
-import { Link } from "react-router-dom";
 
-class Cart extends Component {
+class Checkout extends Component {
 
     constructor(props) {
         super(props);
@@ -20,25 +19,16 @@ class Cart extends Component {
         });
     }
 
-    changeQuantity = (amount, item_index, item_id) => {
-        axios.put(`http://localhost:3001/cart/changeitemquantity/${item_id}/${amount}`).then((response) => {
-            //todo copying the whole items array doesnt seem ideal
-            const updatedItems = this.state.items.slice();
-            updatedItems[item_index].quantity += amount;
-            this.setState({ items: updatedItems });
-        })
-    }
-
-    removeFromCart = (item_index, item_id) => {
-        axios.delete(`http://localhost:3001/cart/removefromcart/${item_id}`).then((response) => {
-            const updatedItems = this.state.items.slice();
-            updatedItems.splice(item_index, 1);
-            this.setState({ items: updatedItems });
-        })
-    }
-
     totalPrice = () => {
         return this.state.items.reduce((sum, item) => sum + (item.quantity * item.price), 0);
+    }
+
+    orderCart = () => {
+        axios.post('http://localhost:3001/cart/order', {}).then((response) => {
+            console.log(response.data)
+            //TODO probably go to a temporary order success screen
+            this.setState({ items: [] });
+        });
     }
 
     render() {
@@ -54,13 +44,15 @@ class Cart extends Component {
 
                     <div>
                         {items.map((item, index) => (
-                            <CartItem key={index} index={index} item={item} removeFromCart={this.removeFromCart} changeQuantity={this.changeQuantity} />
+                            <CartItem key={index} item={item} allowEdit={false} />
                         ))}
                     </div >
 
                     Your Total is { formatCurrency(this.totalPrice())}
 
-                    <Link to="/checkout">Checkout</Link>
+
+                    <button onClick={() => this.orderCart()}> To order these items please click here </button>
+
 
                 </div>
             );
@@ -74,4 +66,4 @@ class Cart extends Component {
     }
 }
 
-export default Cart;
+export default Checkout;
