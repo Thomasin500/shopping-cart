@@ -18,7 +18,6 @@ Stack:
 - TODO testing framewoks
 - 100% Dockerized (STILL TODO)
 
-
 ## Instructions for Use
 TODO
 

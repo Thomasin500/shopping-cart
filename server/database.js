@@ -73,9 +73,11 @@ ADD PRIMARY KEY(id);
 ALTER TABLE current_cart
 MODIFY id int(255) NOT NULL AUTO_INCREMENT;
 
+/*
 INSERT INTO current_cart (id, item_id, quantity) VALUES
     (1, 1, 2),
     (2, 2, 3);
+*/
 
 /*  ORDERS TABLE  */
 DROP TABLE IF EXISTS orders;
@@ -91,9 +93,12 @@ ADD PRIMARY KEY(id);
 ALTER TABLE orders
 MODIFY id int(255) NOT NULL AUTO_INCREMENT;
 
+/*
 INSERT INTO orders (id, name) VALUES
     (1, 'Order One'),
     (2, 'Order Two');
+
+*/
 
 /*  order_items TABLE  */
 DROP TABLE IF EXISTS order_items;
@@ -110,15 +115,17 @@ ADD PRIMARY KEY(id);
 ALTER TABLE order_items
 MODIFY id int(255) NOT NULL AUTO_INCREMENT;
 
+/*
 INSERT INTO order_items (order_id, item_id, quantity) VALUES
     (1, 1, 2),
     (1, 2, 3),
     (2, 1, 1);
+*/
 
 COMMIT;`
 );
 
-connection.query(initSQL, function (error, results, fields) {
+connection.query(initSQL, function (error) {
     if (error) {
         throw error;
     }

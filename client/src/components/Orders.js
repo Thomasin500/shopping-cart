@@ -22,15 +22,27 @@ class Orders extends Component {
         const { orders } = this.state;
 
         //TODO dont have a custom component here, just create a table with a link to order details
-       
-        return (
-            <div>
-                {orders.map((order, index) => (
-                    <Link key={index} to={`/orders/${order.id}`}>{order.name}</Link>
-                ))}
-            </div>
-        );
-        
+        if (orders.length) {
+            return (
+                <div>
+                    {orders.map((order, index) => {
+
+                        let orderDate = new Date(Date.parse(order.created_at));
+                        let formattedDate = `${orderDate.getMonth() + 1}/${orderDate.getDate()}/${orderDate.getFullYear()} @ ${orderDate.getHours()}:${orderDate.getMinutes()}`;
+
+                        return (
+                            <Link key={index} to={`/orders/${order.id}`}>{order.name} {formattedDate}</Link>
+                        )
+                    })}
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <h1>You have no previous orders. Once you have placed an order, it will appear here</h1>
+                </div>
+            );
+        }
     }
 }
 
