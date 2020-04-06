@@ -7,9 +7,9 @@ This is a simple online shopping application. With a hardcoded set of items for 
 Video overview of the project can be found here: TODO
 
 Features:
--Ability to shop a variety of items for sale and add them to a shopping cart
--Persistent data through an included mySQL database
--Ability to edit/change quantities of shopping cart items and remove them entirely if desired
+- Ability to shop a variety of items for sale and add them to a shopping cart
+- Persistent data through an included mySQL database
+- Ability to edit/change quantities of shopping cart items and remove them entirely if desired
 
 ## Instructions for Use
 TODO
