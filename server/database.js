@@ -122,8 +122,6 @@ connection.query(initSQL, function (error, results, fields) {
     if (error) {
         throw error;
     }
-    console.log(results[0]);
-    console.log(results[1]);
 });
 
 connection.end();
