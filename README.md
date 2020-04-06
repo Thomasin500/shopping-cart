@@ -11,6 +11,14 @@ Features:
 - Persistent data through an included mySQL database
 - Ability to edit/change quantities of shopping cart items and remove them entirely if desired
 
+Stack:
+- ExpressJS (nodeJS) server
+- React Frontend
+- mySQL database
+- TODO testing framewoks
+- 100% Dockerized (STILL TODO)
+
+
 ## Instructions for Use
 TODO
 
