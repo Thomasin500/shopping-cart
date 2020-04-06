@@ -10,9 +10,13 @@ import './App.css';
 import Shopping from "../components/Shopping";
 import Cart from "../components/Cart";
 import Home from "../components/Home";
-import Checkout from "../components/Checkout"
+import Checkout from "../components/Checkout";
+import Orders from "../components/Orders";
+import OrderDetails from "../components/OrderDetails";
+
 
 function App() {
+
     return (
         <Router>
             <div>
@@ -27,6 +31,9 @@ function App() {
                         <li>
                             <Link to="/cart">Shopping Cart</Link>
                         </li>
+                        <li>
+                            <Link to="/orders">Orders</Link>
+                        </li>
                     </ul>
                 </nav>
 
@@ -40,6 +47,12 @@ function App() {
                     </Route>
                     <Route path="/checkout">
                         <Checkout />
+                    </Route>
+                    <Route path="/orders/:order_id">
+                        <OrderDetails />
+                    </Route>
+                    <Route path="/orders">
+                        <Orders />
                     </Route>
                     <Route path="/">
                         <Home />

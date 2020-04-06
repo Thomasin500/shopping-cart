@@ -12,8 +12,10 @@ app.listen(port, () => console.log(`Example app listening at http://localhost:${
 
 //routes
 const cartRouter = require('./routes/cart');
+const ordersRouter = require('./routes/orders');
 const shoppingRouter = require('./routes/shopping');
 
+//todo probably get rid of this
 app.get('/', (req, res) => {
     console.log('hello')
     res.send('Hello World!');
@@ -21,6 +23,7 @@ app.get('/', (req, res) => {
 
 app.use('/shopping', shoppingRouter);
 app.use('/cart', cartRouter);
+app.use('/orders', ordersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

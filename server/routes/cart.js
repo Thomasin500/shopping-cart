@@ -5,7 +5,7 @@ const pool = require('../database');
 /* /cart routes */
 
 router.get('/', function (req, res) {
-   pool.query(`SELECT current_cart.id as current_cart_id, current_cart.quantity, items.id as item_id, items.name, items.price FROM current_cart INNER JOIN items on current_cart.item_id = items.id`, (err, results) => {
+   pool.query(`SELECT current_cart.id AS current_cart_id, current_cart.quantity, items.id as item_id, items.name, items.price FROM current_cart INNER JOIN items ON current_cart.item_id = items.id`, (err, results) => {
         if (err) {
             return res.send(err);
         } else {
@@ -29,12 +29,37 @@ router.put('/changeitemquantity/:itemId/:amount', function (req, res) {
 
 router.post('/order', function (req, res) {
 
-    //create a new order row
-    //for each current cart item, add an entry in order items with its order id pointing to the order we just made
-    //empty the cart
+    pool.query(`INSERT INTO orders (name, created_at) VALUES ('CUSTOM ORDER #1', NOW())`, (order_err, order_results) => {
+        
+        if (order_err) {
+            return res.send(order_err);
+        } else {
 
+            pool.query(`SELECT * FROM current_cart`, (cart_err, cart_results) => {
+                if (cart_err) {
+                    return res.send(cart_err);
+                } else {
+                   
+                    cart_results.forEach(cartItem => {
+                        pool.query(`INSERT INTO order_items (order_id, item_id, quantity) VALUES (${order_results.insertId}, ${cartItem.item_id}, ${cartItem.quantity})`, (order_item_err, order_item_results) => {
+                            if (order_item_err) {
+                                return res.send(order_item_err);
+                            }
+                        });
+                    });
 
+                    pool.query(`TRUNCATE current_cart`, (trunc_cart_err, results) => {
+                        if (trunc_cart_err) {
+                            return res.send(trunc_cart_err);
+                        } 
+                    });
+                }
 
+                return res.send(order_results);
+            });
+
+        }
+    });
 });
 
 router.delete('/removefromcart/:itemId', function (req, res) {

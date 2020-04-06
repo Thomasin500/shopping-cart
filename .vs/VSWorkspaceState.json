@@ -4,11 +4,12 @@
     "\\client",
     "\\client\\public",
     "\\client\\src",
+    "\\client\\src\\app",
     "\\client\\src\\components",
     "\\client\\src\\helpers",
     "\\server",
     "\\server\\routes"
   ],
-  "SelectedNode": "\\client\\src\\components\\ShoppingItem.js",
+  "SelectedNode": "\\server\\routes\\cart.js",
   "PreviewInSolutionExplorer": false
 }
