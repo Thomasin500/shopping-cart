@@ -41,6 +41,7 @@ router.post('/order', function (req, res) {
                 } else {
                    
                     cart_results.forEach(cartItem => {
+                        //TODO maybe I can bundle all the SQL into one big query to run at the end?
                         pool.query(`INSERT INTO order_items (order_id, item_id, quantity) VALUES (${order_results.insertId}, ${cartItem.item_id}, ${cartItem.quantity})`, (order_item_err, order_item_results) => {
                             if (order_item_err) {
                                 return res.send(order_item_err);

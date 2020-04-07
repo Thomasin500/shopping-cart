@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import CartItem from "./CartItem";
 import formatCurrency from "../helpers/formatters"
-import { Link } from "react-router-dom";
 
 class Cart extends Component {
 
@@ -14,7 +13,9 @@ class Cart extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/cart', {}).then((response) => {
+        console.log('DID MOUNT')
+        return axios.get('http://localhost:3001/cart', {}).then((response) => {
+            console.log('THEN AFTER CALL')
             console.log(response.data)
             this.setState({ items: response.data });
         });
@@ -45,6 +46,8 @@ class Cart extends Component {
 
         const { items } = this.state;
 
+        console.log(12345)
+
         //TODO how to styling the cart?
 
         if (items.length) {
@@ -58,15 +61,17 @@ class Cart extends Component {
                         ))}
                     </div >
 
-                    Your Total is { formatCurrency(this.totalPrice())}
+                    <div id="cart-total">
+                        Your Total is {formatCurrency(this.totalPrice())}
+                    </div>
 
-                    <Link to="/checkout">Checkout</Link>
+                    <a href="/checkout">Checkout</a>
 
                 </div>
             );
         } else {
             return (
-                <div>
+                <div id="empty-cart-container">
                     <h1>Welcome to your Shopping Cart! Please add items to see your order here</h1>
                 </div>
             );
