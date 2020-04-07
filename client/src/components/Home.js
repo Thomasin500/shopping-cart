@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+//TODO get rid of this?
 class Home extends Component {
     render() {
         return (

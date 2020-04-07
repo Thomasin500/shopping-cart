@@ -14,7 +14,6 @@ class Checkout extends Component {
 
     componentDidMount() {
         axios.get('http://localhost:3001/cart', {}).then((response) => {
-            console.log(response.data)
             this.setState({ items: response.data });
         });
     }
@@ -25,7 +24,6 @@ class Checkout extends Component {
 
     orderCart = () => {
         axios.post('http://localhost:3001/cart/order', {}).then((response) => {
-            console.log(response.data)
             //TODO probably go to a temporary order success screen
             this.setState({ items: [] });
         });
@@ -39,7 +37,7 @@ class Checkout extends Component {
 
         if (items.length) {
             return (
-                <div>
+                <div id="checkout-container">
                     <h1>Shopping Cart</h1>
 
                     <div>
@@ -58,8 +56,8 @@ class Checkout extends Component {
             );
         } else {
             return (
-                <div>
-                    <h1>Welcome to your Shopping Cart! Please add items to see your order here</h1>
+                <div id="empty-checkout">
+                    <h1>You have no items in your shopping cart to checkout!</h1>
                 </div>
             );
         }

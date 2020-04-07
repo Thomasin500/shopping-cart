@@ -14,7 +14,7 @@ class Cart extends Component {
 
     componentDidMount() {
         console.log('DID MOUNT')
-        return axios.get('http://localhost:3001/cart', {}).then((response) => {
+        axios.get('http://localhost:3001/cart', {}).then((response) => {
             console.log('THEN AFTER CALL')
             console.log(response.data)
             this.setState({ items: response.data });
@@ -46,13 +46,13 @@ class Cart extends Component {
 
         const { items } = this.state;
 
-        console.log(12345)
+        console.log('CART RENDER')
 
         //TODO how to styling the cart?
 
         if (items.length) {
             return (
-                <div>
+                <div id="shopping-cart">
                     <h1>Shopping Cart</h1>
 
                     <div>

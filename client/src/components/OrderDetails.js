@@ -3,6 +3,7 @@ import axios from "axios";
 import formatCurrency from "../helpers/formatters"
 import CartItem from "./CartItem";
 
+//TODO warning about using withRouter outside of <Router>
 import { withRouter } from "react-router-dom";
 
 class OrderDetails extends Component {
