@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 class Orders extends Component {
 
@@ -31,14 +30,14 @@ class Orders extends Component {
                         let formattedDate = `${orderDate.getMonth() + 1}/${orderDate.getDate()}/${orderDate.getFullYear()} @ ${orderDate.getHours()}:${orderDate.getMinutes()}`;
 
                         return (
-                            <Link key={index} to={`/orders/${order.id}`}>{order.name} {formattedDate}</Link>
+                            <a key={index} href={`/orders/${order.id}`}>{order.name} {formattedDate}</a>
                         )
                     })}
                 </div>
             );
         } else {
             return (
-                <div>
+                <div id="empty-orders">
                     <h1>You have no previous orders. Once you have placed an order, it will appear here</h1>
                 </div>
             );

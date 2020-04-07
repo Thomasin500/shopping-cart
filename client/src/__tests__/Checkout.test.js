@@ -74,7 +74,7 @@ describe('Checkout', () => {
             //TODO here I should probably actually test the existance of the cartItems components and not just the state
 
             expect(currentState.items).toEqual(data);
-
+            mock.restore();
             done();
 
         }); 

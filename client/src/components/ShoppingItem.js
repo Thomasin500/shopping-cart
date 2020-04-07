@@ -7,7 +7,8 @@ function ShoppingItem(props) {
     //each item should have an individual price, quantity, total price, name, description, etc
     //TODO ability to edit quantity
 
-    function addItemToCart(item) {   
+    function addItemToCart(item) {  
+        console.log(666)
         axios.post(`http://localhost:3001/shopping/additemtocart/${item.id}`)
             .then((response) => {
                 console.log(`Added ${item.name} to your shopping cart!`);
@@ -16,10 +17,10 @@ function ShoppingItem(props) {
     }
 
     return (
-        <div>
+        <div id="shopping-item">
             name: { props.item.name }
             price: { formatCurrency(props.item.price) }
-            <button onClick={() => addItemToCart(props.item)}> Click me </button>
+            <button id="addToCart" onClick={() => addItemToCart(props.item)}> Click me </button>
         </div>
     );
     

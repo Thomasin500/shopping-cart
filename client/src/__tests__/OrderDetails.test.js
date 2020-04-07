@@ -11,10 +11,10 @@ configure({ adapter: new Adapter() });
 //TODO make sure to test the actual cart functions
 //change Quantity, gettotal Price, removeFrom Cart etc....
 
-describe('Cart', () => {
+describe('Order Details', () => {
 
     //TODO not finding total ID or something like that
-    it('renders an empty Cart', done => {
+    it('renders an empty Order Details Page', done => {
 
         const wrapper = mount(
             <Router>
@@ -28,7 +28,7 @@ describe('Cart', () => {
     });
 
     
-    it('renders a cart of items', done => {
+    it('renders an Order Details page with items', done => {
 
         var mock = new MockAdapter(axios);
 
@@ -76,10 +76,7 @@ describe('Cart', () => {
             //TODO here I should probably actually test the existance of the cartItems components and not just the state
 
             expect(currentState.orderItems).toEqual(data);
-
-            console.log(123)
-
-          
+            mock.restore();
             done();
 
         }); 
