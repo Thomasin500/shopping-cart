@@ -31,36 +31,46 @@ router.put('/changeitemquantity/:itemId/:amount', function (req, res) {
 
 router.post('/order', function (req, res) {
 
-    pool.query(`INSERT INTO orders (name, created_at) VALUES ('CUSTOM ORDER #1', NOW())`, (order_err, order_results) => {
-        
-        if (order_err) {
-            return res.send(order_err);
+    pool.query(`SELECT * FROM orders ORDER BY id DESC LIMIT 1`, (err, results) => {
+
+        if (err) {
+            return res.send(err);
         } else {
 
-            pool.query(`SELECT * FROM current_cart`, (cart_err, cart_results) => {
-                if (cart_err) {
-                    return res.send(cart_err);
-                } else {
-                   
-                    cart_results.forEach(cartItem => {
-                        //TODO maybe I can bundle all the SQL into one big query to run at the end?
-                        pool.query(`INSERT INTO order_items (order_id, item_id, quantity) VALUES (${order_results.insertId}, ${cartItem.item_id}, ${cartItem.quantity})`, (order_item_err, order_item_results) => {
-                            if (order_item_err) {
-                                return res.send(order_item_err);
-                            }
-                        });
-                    });
+            const orderNum = results.length === 1 ? parseInt(results[0].id) + 1 : '1'
 
-                    pool.query(`TRUNCATE current_cart`, (trunc_cart_err, results) => {
-                        if (trunc_cart_err) {
-                            return res.send(trunc_cart_err);
-                        } 
+            pool.query(`INSERT INTO orders (name, created_at) VALUES ('Order #${orderNum}', NOW())`, (order_err, order_results) => {
+
+                if (order_err) {
+                    return res.send(order_err);
+                } else {
+
+                    pool.query(`SELECT * FROM current_cart`, (cart_err, cart_results) => {
+
+                        if (cart_err) {
+                            return res.send(cart_err);
+                        } else {
+
+                            //TODO this could be optimized by pooling one big query and committing it at the end
+                            cart_results.forEach(cartItem => {
+                                pool.query(`INSERT INTO order_items (order_id, item_id, quantity) VALUES (${order_results.insertId}, ${cartItem.item_id}, ${cartItem.quantity})`, (order_item_err, order_item_results) => {
+                                    if (order_item_err) {
+                                        return res.send(order_item_err);
+                                    }
+                                });
+                            });
+
+                            pool.query(`TRUNCATE current_cart`, (trunc_cart_err, results) => {
+                                if (trunc_cart_err) {
+                                    return res.send(trunc_cart_err);
+                                }
+                            });
+                        }
+
+                        return res.send(order_results);
                     });
                 }
-
-                return res.send(order_results);
             });
-
         }
     });
 });

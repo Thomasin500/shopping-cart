@@ -66,7 +66,7 @@ class Cart extends Component {
         } else {
             return (
                 <div id="empty-cart-container">
-                    <h1>Welcome to your Shopping Cart! Please add items to see your order here</h1>
+                    <h2>Welcome to your Shopping Cart! Please add items to see your order here</h2>
                 </div>
             );
         }

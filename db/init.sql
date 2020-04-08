@@ -1,13 +1,7 @@
-
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
-
---
--- Database: `sampledb`
---
 
 /*  items TABLE  */
 DROP TABLE IF EXISTS `items`;
@@ -15,6 +9,7 @@ DROP TABLE IF EXISTS `items`;
 CREATE TABLE `items` (
     `id` int(255) NOT NULL,
     `name` varchar(100) NOT NULL,
+    `description` varchar(100) NOT NULL,
     `price` DECIMAL(10, 2) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
@@ -23,11 +18,13 @@ ADD PRIMARY KEY(`id`);
 ALTER TABLE `items`
 MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
-INSERT INTO `items` (`name`, `price`) VALUES
-    ('Bread', 1.25),
-    ('Milk', 2.25),
-    ('Chicken', 14.99),
-    ('Beef', 19.99);
+INSERT INTO `items` (`name`, 'description', `price`) VALUES
+    ('Milk', 'A nutrient-rich, white liquid food produced by the mammary glands of mammals', 3.25),
+    ('Cheese', 'A dairy product derived from milk that is produced in a wide range of flavors, textures, and forms by coagulation of the milk protein casein', 1.99),
+    ('Beef', 'The culinary name for meat from cattle, particularly skeletal muscle', 14.99),
+    ('Bread', 'A staple food prepared from a dough of flour and water, usually by baking', 5.99),
+    ('Wine', 'An alcoholic drink typically made from fermented grapes', 2.25),
+    ('Fish', 'Gill-bearing aquatic craniate animals that lack limbs with digits', 22.999);
 
 /*  current_cart TABLE  */
 DROP TABLE IF EXISTS `current_cart`;
@@ -43,12 +40,6 @@ ADD PRIMARY KEY(`id`);
 ALTER TABLE `current_cart`
 MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
-/*
-INSERT INTO current_cart (id, item_id, quantity) VALUES
-    (1, 1, 2),
-    (2, 2, 3);
-*/
-
 /*  ORDERS TABLE  */
 DROP TABLE IF EXISTS `orders`;
 
@@ -62,13 +53,6 @@ ALTER TABLE `orders`
 ADD PRIMARY KEY(`id`);
 ALTER TABLE `orders`
 MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
-
-/*
-INSERT INTO orders (id, name) VALUES
-    (1, 'Order One'),
-    (2, 'Order Two');
-
-*/
 
 /*  order_items TABLE  */
 DROP TABLE IF EXISTS `order_items`;
@@ -84,12 +68,5 @@ ALTER TABLE `order_items`
 ADD PRIMARY KEY(`id`);
 ALTER TABLE `order_items`
 MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
-
-/*
-INSERT INTO order_items (order_id, item_id, quantity) VALUES
-    (1, 1, 2),
-    (1, 2, 3),
-    (2, 1, 1);
-*/
 
 COMMIT;

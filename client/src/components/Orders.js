@@ -23,15 +23,20 @@ class Orders extends Component {
         if (orders.length) {
             return (
                 <div>
-                    {orders.map((order, index) => {
+                    <h2>Orders</h2>
+                    <ui>
+                        {orders.map((order, index) => {
 
-                        let orderDate = new Date(Date.parse(order.created_at));
-                        let formattedDate = `${orderDate.getMonth() + 1}/${orderDate.getDate()}/${orderDate.getFullYear()} @ ${orderDate.getHours()}:${orderDate.getMinutes()}`;
+                            let orderDate = new Date(Date.parse(order.created_at));
+                            let formattedDate = `${orderDate.getMonth() + 1}/${orderDate.getDate()}/${orderDate.getFullYear()} @ ${orderDate.getHours()}:${orderDate.getMinutes()}`;
 
-                        return (
-                            <a key={index} href={`/orders/${order.id}`}>{order.name} {formattedDate}</a>
-                        )
-                    })}
+                            return (
+                                <li>
+                                    <a key={index} href={`/orders/${order.id}`}>{order.name} {formattedDate}</a>
+                                </li>
+                            )
+                        })}
+                    </ui>
                 </div>
             );
         } else {

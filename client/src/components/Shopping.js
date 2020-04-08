@@ -22,6 +22,8 @@ class Shopping extends Component {
 
         const { items } = this.state;
 
+        console.log(items)
+
         return (
             <div>
                 <h2>Shopping for Things to Buy</h2>
