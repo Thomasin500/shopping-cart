@@ -18,11 +18,14 @@ class Shopping extends Component {
         });
     }
 
-    addItemToCart = item => {
+    addItemToCart = (item, index) => {
         axios.post(`http://localhost:8000/shopping/additemtocart/${item.id}`)
             .then((response) => {
                 console.log(`Added ${item.name} to your shopping cart!`);
                 //TODO some sort of notification
+                const updatedItems = this.state.items.slice();
+                updatedItems[index].added = true;
+                this.setState({ items: updatedItems });
             });
     }
 
@@ -43,18 +46,23 @@ class Shopping extends Component {
                             <th>Actions</th>
                         </tr>
 
-                        {Array.isArray(items) && items.map( item => (
-                            <tr>
-                                <td>{item.name}</td>
-                                <td align="center">
-                                    <div className="shopping-item-desc">{item.description}</div>
-                                </td>
-                                <td> {formatCurrency(item.price)}</td>
-                                <td>
-                                    <button className="shopping-item-button" onClick={() => this.addItemToCart(item)}> Add To Cart </button>
-                                </td>
-                            </tr>
-                        ))}
+                        {Array.isArray(items) && items.map((item, index) => {
+
+                            const actions = item.added ? 'Added!' : (<button onClick={() => this.addItemToCart(item, index)}> Add To Cart </button>)
+
+                            return (
+                                <tr>
+                                    <td>{item.name}</td>
+                                    <td align="center">
+                                        <div className="shopping-item-desc">{item.description}</div>
+                                    </td>
+                                    <td> {formatCurrency(item.price)}</td>
+                                    <td align="center">
+                                        <span className="shopping-item-actions">{actions}</span>                             
+                                    </td>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </table>
                
