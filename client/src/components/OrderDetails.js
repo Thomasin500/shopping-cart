@@ -19,7 +19,7 @@ class OrderDetails extends Component {
 
         const order_id = this.props.match.params.order_id
 
-        axios.get(`http://localhost:3001/orders/${order_id}`, {}).then((response) => {
+        axios.get(`http://localhost:8000/orders/${order_id}`, {}).then((response) => {
             console.log(response.data)
             this.setState({ orderItems: response.data });
         });

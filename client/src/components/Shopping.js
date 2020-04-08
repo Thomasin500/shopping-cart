@@ -12,7 +12,7 @@ class Shopping extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/shopping', {}).then((response) => {
+        axios.get('http://localhost:8000/shopping', {}).then((response) => {
             this.setState({ items: response.data });
         });
     }

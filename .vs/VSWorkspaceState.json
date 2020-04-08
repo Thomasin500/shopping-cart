@@ -2,14 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\client",
-    "\\client\\public",
     "\\client\\src",
-    "\\client\\src\\app",
     "\\client\\src\\components",
-    "\\client\\src\\helpers",
-    "\\server",
-    "\\server\\routes"
+    "\\server"
   ],
-  "SelectedNode": "\\client\\src\\components\\Orders.js",
   "PreviewInSolutionExplorer": false
 }

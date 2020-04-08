@@ -14,7 +14,7 @@ class Cart extends Component {
 
     componentDidMount() {
         console.log('DID MOUNT')
-        axios.get('http://localhost:3001/cart', {}).then((response) => {
+        axios.get('http://localhost:8000/cart', {}).then((response) => {
             console.log('THEN AFTER CALL')
             console.log(response.data)
             this.setState({ items: response.data });
@@ -22,7 +22,7 @@ class Cart extends Component {
     }
 
     changeQuantity = (amount, item_index, item_id) => {
-        axios.put(`http://localhost:3001/cart/changeitemquantity/${item_id}/${amount}`).then((response) => {
+        axios.put(`http://localhost:8000/cart/changeitemquantity/${item_id}/${amount}`).then((response) => {
             //todo copying the whole items array doesnt seem ideal
             const updatedItems = this.state.items.slice();
             updatedItems[item_index].quantity += amount;
@@ -31,7 +31,7 @@ class Cart extends Component {
     }
 
     removeFromCart = (item_index, item_id) => {
-        axios.delete(`http://localhost:3001/cart/removefromcart/${item_id}`).then((response) => {
+        axios.delete(`http://localhost:8000/cart/removefromcart/${item_id}`).then((response) => {
             const updatedItems = this.state.items.slice();
             updatedItems.splice(item_index, 1);
             this.setState({ items: updatedItems });

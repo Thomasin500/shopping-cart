@@ -13,7 +13,7 @@ class Checkout extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/cart', {}).then((response) => {
+        axios.get('http://localhost:8000/cart', {}).then((response) => {
             this.setState({ items: response.data });
         });
     }
@@ -23,7 +23,7 @@ class Checkout extends Component {
     }
 
     orderCart = () => {
-        axios.post('http://localhost:3001/cart/order', {}).then((response) => {
+        axios.post('http://localhost:8000/cart/order', {}).then((response) => {
             //TODO probably go to a temporary order success screen
             this.setState({ items: [] });
         });

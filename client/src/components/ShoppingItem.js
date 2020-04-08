@@ -9,7 +9,7 @@ function ShoppingItem(props) {
 
     function addItemToCart(item) {  
         console.log(666)
-        axios.post(`http://localhost:3001/shopping/additemtocart/${item.id}`)
+        axios.post(`http://localhost:8000/shopping/additemtocart/${item.id}`)
             .then((response) => {
                 console.log(`Added ${item.name} to your shopping cart!`);
             //TODO some sort of notification
