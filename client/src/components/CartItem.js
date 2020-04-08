@@ -5,8 +5,6 @@ import formatCurrency from "../helpers/formatters";
 //todo styling
 const CartItem = props => {
 
-    //TODO remove item from cart
-
     const { item, changeQuantity, removeFromCart, allowEdit } = props;
 
     let editButtons;

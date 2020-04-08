@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-//TODO get rid of this?
 class Home extends Component {
     render() {
         return (
@@ -8,7 +7,7 @@ class Home extends Component {
                 <h2>HOME</h2>
                 <p>Welcome to the Thomas Shopping Network</p>
 
-                <p>Duis a turpis sed lacus dapibus elementum sed eu lectus.</p>
+                <p>Feel free to browse our wares</p>
             </div>
         );
     }

@@ -52,7 +52,7 @@ describe('Order Details', () => {
         //total = 19.50
 
         //TODO make sure this works without hardcoding the URL (order details component gets its orderID from the url)
-        mock.onGet('http://localhost:3001/orders/1').reply(200, data);
+        mock.onGet('http://localhost:8000/orders/1').reply(200, data);
 
         const getSpy = jest.spyOn(axios, 'get');
 

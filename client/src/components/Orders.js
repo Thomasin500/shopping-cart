@@ -20,7 +20,6 @@ class Orders extends Component {
 
         const { orders } = this.state;
 
-        //TODO dont have a custom component here, just create a table with a link to order details
         if (orders.length) {
             return (
                 <div>

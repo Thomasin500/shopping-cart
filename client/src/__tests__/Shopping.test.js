@@ -43,7 +43,7 @@ describe('Shopping', () => {
         ];
         //total = 19.50
 
-        mock.onGet('http://localhost:3001/shopping').reply(200, data);
+        mock.onGet('http://localhost:8000/shopping').reply(200, data);
 
         const getSpy = jest.spyOn(axios, 'get');
 

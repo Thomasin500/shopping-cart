@@ -4,11 +4,9 @@ import formatCurrency from "../helpers/formatters"
 
 function ShoppingItem(props) {
 
-    //each item should have an individual price, quantity, total price, name, description, etc
-    //TODO ability to edit quantity
+    //TODO maybe have a drop down selector of quantities instead of buttons
 
     function addItemToCart(item) {  
-        console.log(666)
         axios.post(`http://localhost:8000/shopping/additemtocart/${item.id}`)
             .then((response) => {
                 console.log(`Added ${item.name} to your shopping cart!`);

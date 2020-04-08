@@ -15,16 +15,7 @@ import Checkout from "../components/Checkout";
 import Orders from "../components/Orders";
 import OrderDetails from "../components/OrderDetails";
 
-function callServer() {
-    console.log('call server')
-    axios.get('http://localhost:8000/test', {}).then((response) => {
-        console.log('THEN BLOCK')
-        console.log(response.data);
-    });
-}
-
 function App() {
-
     return (
         <Router>
             <div>

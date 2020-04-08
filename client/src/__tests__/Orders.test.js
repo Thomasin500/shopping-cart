@@ -42,7 +42,7 @@ describe('Orders', () => {
             }
         ];
 
-        mock.onGet('http://localhost:3001/orders').reply(200, data);
+        mock.onGet('http://localhost:8000/orders').reply(200, data);
 
         const getSpy = jest.spyOn(axios, 'get');
 
