@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ShoppingItem from "./ShoppingItem";
+import '../css/Shopping.css';
 
 class Shopping extends Component {
 
@@ -24,6 +25,12 @@ class Shopping extends Component {
         return (
             <div>
                 <h2>Shopping for Things to Buy</h2>
+
+                <div className="shopping-header-container">
+                    <div className="shopping-header">Name</div>
+                    <div className="shopping-header">Description</div>
+                    <div className="shopping-header">Price</div>
+                </div>
 
                 <div>
                     {items.map( item => (

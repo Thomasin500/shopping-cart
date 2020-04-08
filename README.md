@@ -10,13 +10,15 @@ Features:
 - Ability to shop a variety of items for sale and add them to a shopping cart
 - Persistent data through an included mySQL database
 - Ability to edit/change quantities of shopping cart items and remove them entirely if desired
+- A checkout flow to place an order of the items in your cart
+- View past orders and details of that order
 
 Stack:
 - ExpressJS (nodeJS) server
 - React Frontend
 - mySQL database
-- TODO testing framewoks
-- 100% Dockerized (STILL TODO)
+- Jest/Enzyme Testing
+- 100% Dockerized 
 
 ## Instructions for Use
 TODO

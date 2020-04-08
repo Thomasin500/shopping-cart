@@ -1,0 +1,8 @@
+.shopping-header-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.shopping-header {
+    width: 15rem;
+}
