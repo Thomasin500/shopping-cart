@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import '../css/Orders.css';
 
 class Orders extends Component {
 
@@ -23,20 +24,27 @@ class Orders extends Component {
         if (orders.length) {
             return (
                 <div>
-                    <h2>Orders</h2>
-                    <ui>
+                    <div className="orders-container">
+                        <h2>Orders</h2>
+                        <h2 className="orders-date-header">Ordered On</h2>
+                    </div>
+                    <ul>
                         {orders.map((order, index) => {
 
                             let orderDate = new Date(Date.parse(order.created_at));
-                            let formattedDate = `${orderDate.getMonth() + 1}/${orderDate.getDate()}/${orderDate.getFullYear()} @ ${orderDate.getHours()}:${orderDate.getMinutes()}`;
+                            let formattedDate = `${orderDate.getMonth() + 1}/${orderDate.getDate()}/${orderDate.getFullYear()}`;
+                            let formattedHours = orderDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
                             return (
-                                <li>
-                                    <a key={index} href={`/orders/${order.id}`}>{order.name} {formattedDate}</a>
+                                <li className="order-item">
+                                    <a key={index} href={`/orders/${order.id}`}>{order.name}</a>
+                                    <span className="order-date">
+                                        {formattedDate} @ {formattedHours}
+                                    </span>
                                 </li>
                             )
                         })}
-                    </ui>
+                    </ul>
                 </div>
             );
         } else {

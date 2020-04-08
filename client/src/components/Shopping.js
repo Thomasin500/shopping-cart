@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import ShoppingItem from "./ShoppingItem";
+import formatCurrency from "../helpers/formatters"
 import '../css/Shopping.css';
 
 class Shopping extends Component {
@@ -18,27 +18,45 @@ class Shopping extends Component {
         });
     }
 
+    addItemToCart = item => {
+        axios.post(`http://localhost:8000/shopping/additemtocart/${item.id}`)
+            .then((response) => {
+                console.log(`Added ${item.name} to your shopping cart!`);
+                //TODO some sort of notification
+            });
+    }
+
     render() {
 
         const { items } = this.state;
 
-        console.log(items)
-
         return (
             <div>
-                <h2>Shopping for Things to Buy</h2>
+                <h2>Wares for Sale</h2>
 
-                <div className="shopping-header-container">
-                    <div className="shopping-header">Name</div>
-                    <div className="shopping-header">Description</div>
-                    <div className="shopping-header">Price</div>
-                </div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
 
-                <div>
-                    {items.map( item => (
-                        <ShoppingItem key={item.id} item={item} />
-                    ))}
-                </div >
+                        {Array.isArray(items) && items.map( item => (
+                            <tr>
+                                <td>{item.name}</td>
+                                <td align="center">
+                                    <div className="shopping-item-desc">{item.description}</div>
+                                </td>
+                                <td> {formatCurrency(item.price)}</td>
+                                <td>
+                                    <button className="shopping-item-button" onClick={() => this.addItemToCart(item)}> Add To Cart </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
                
             </div>
         );

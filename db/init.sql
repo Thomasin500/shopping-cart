@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS `items`;
 CREATE TABLE `items` (
     `id` int(255) NOT NULL,
     `name` varchar(100) NOT NULL,
-    `description` varchar(100) NOT NULL,
+    `description` varchar(256) NOT NULL,
     `price` DECIMAL(10, 2) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
@@ -18,7 +18,7 @@ ADD PRIMARY KEY(`id`);
 ALTER TABLE `items`
 MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
-INSERT INTO `items` (`name`, 'description', `price`) VALUES
+INSERT INTO `items` (`name`, `description`, `price`) VALUES
     ('Milk', 'A nutrient-rich, white liquid food produced by the mammary glands of mammals', 3.25),
     ('Cheese', 'A dairy product derived from milk that is produced in a wide range of flavors, textures, and forms by coagulation of the milk protein casein', 1.99),
     ('Beef', 'The culinary name for meat from cattle, particularly skeletal muscle', 14.99),

@@ -1,8 +1,11 @@
-.shopping-header-container {
-    display: flex;
-    justify-content: flex-start;
+
+
+
+.shopping-item-button {
+    width: 75%;
+    margin-left: 1rem;
 }
 
-.shopping-header {
-    width: 15rem;
+.shopping-item-desc {
+    width: 50%;
 }

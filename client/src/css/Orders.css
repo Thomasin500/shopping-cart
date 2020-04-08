@@ -1,0 +1,23 @@
+.order-date {
+    margin-left: auto;
+    margin-right: 2rem;
+}
+
+.order-item {
+    display: flex;
+    margin-left: -2.5rem;
+}
+
+.order-date {
+    margin-left: auto;
+    margin-right: 2rem;
+}
+
+.orders-container {
+    display: flex;
+}
+
+.orders-date-header {
+    margin-left: auto;
+    margin-right: 2rem;
+}
