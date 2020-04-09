@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import CartItem from "./CartItem";
-import formatCurrency from "../helpers/formatters"
+import formatCurrency from "../helpers/formatters";
 import '../css/Cart.css';
 
 class Cart extends Component {
@@ -19,12 +19,14 @@ class Cart extends Component {
         });
     }
 
-    changeQuantity = (amount, item_index, item_id) => {
-        axios.put(`http://localhost:8000/cart/changeitemquantity/${item_id}/${amount}`).then((response) => {
-            const updatedItems = this.state.items.slice();
-            updatedItems[item_index].quantity += amount;
-            this.setState({ items: updatedItems });
-        })
+    changeQuantity = (item, amount, item_index) => {
+        if ((item.quantity + amount) > 1) {
+            axios.put(`http://localhost:8000/cart/changeitemquantity/${item.id}/${amount}`).then((response) => {
+                const updatedItems = this.state.items.slice();
+                updatedItems[item_index].quantity += amount;
+                this.setState({ items: updatedItems });
+            });
+        }
     }
 
     removeFromCart = (item_index, item_id) => {

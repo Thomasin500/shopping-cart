@@ -18,9 +18,6 @@ router.post('/additemtocart/:itemId', function (req, res) {
 
     const { itemId } = req.params;
 
-    //TODO quantity
-    const quantity = 1;
-
     pool.query(`select * from current_cart WHERE item_id = ${itemId}`, (err, results) => {
         if (err) {
             return res.send(err);
@@ -35,7 +32,7 @@ router.post('/additemtocart/:itemId', function (req, res) {
                     }
                 });
             } else {
-                pool.query(`INSERT INTO current_cart (item_id, quantity) VALUES (${itemId}, ${quantity});`, (err, results) => {
+                pool.query(`INSERT INTO current_cart (item_id, quantity) VALUES (${itemId}, 1);`, (err, results) => {
                     if (err) {
                         return res.send(err);
                     } else {
