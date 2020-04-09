@@ -23,7 +23,6 @@ router.get('/:orderId', function (req, res) {
         if (err) {
             return res.send(err);
         } else {
-            console.log(results)
             return res.send(results);
         }
     });
