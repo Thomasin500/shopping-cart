@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import CartItem from "./CartItem";
 import formatCurrency from "../helpers/formatters"
+import '../css/Cart.css';
 
 class Cart extends Component {
 
@@ -42,24 +43,36 @@ class Cart extends Component {
 
         const { items } = this.state;
 
-        //TODO how to styling the cart?
-
         if (items.length) {
+
             return (
                 <div id="shopping-cart">
+
                     <h1>Shopping Cart</h1>
 
-                    <div>
-                        {items.map((item, index) => (
-                            <CartItem key={index} index={index} item={item} removeFromCart={this.removeFromCart} changeQuantity={this.changeQuantity} />
-                        ))}
-                    </div >
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Actions</th>
+                            </tr>
 
-                    <div id="cart-total">
-                        Your Total is {formatCurrency(this.totalPrice())}
+                            {Array.isArray(items) && items.map((item, index) => (
+                                <CartItem key={index} index={index} item={item} removeFromCart={this.removeFromCart} changeQuantity={this.changeQuantity} />                                                     
+                            ))}
+                        </tbody>
+                    </table>
+
+                    <div className="totals-bar">
+                        <div id="cart-total">
+                            Your Total is {formatCurrency(this.totalPrice())}
+                        </div>
+                        <a className="checkout-link" href="/checkout">Checkout</a>
                     </div>
-
-                    <a href="/checkout">Checkout</a>
 
                 </div>
             );
@@ -74,3 +87,5 @@ class Cart extends Component {
 }
 
 export default Cart;
+
+

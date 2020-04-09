@@ -38,7 +38,7 @@ class Checkout extends Component {
         if (items.length) {
             return (
                 <div id="checkout-container">
-                    <h1>Shopping Cart</h1>
+                    <h1>Please review your order</h1>
 
                     <div>
                         {items.map((item, index) => (

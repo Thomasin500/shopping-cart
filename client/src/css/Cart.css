@@ -1,0 +1,11 @@
+.totals-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    margin-right: 2rem;
+}
+
+.checkout-link {
+    position: absolute;
+    margin-top: 2rem;
+}

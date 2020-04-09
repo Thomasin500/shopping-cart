@@ -56,7 +56,7 @@ class Shopping extends Component {
                                     <td align="center">
                                         <div className="shopping-item-desc">{item.description}</div>
                                     </td>
-                                    <td> {formatCurrency(item.price)}</td>
+                                    <td align="center"> {formatCurrency(item.price)}</td>
                                     <td align="center">
                                         <span className="shopping-item-actions">{actions}</span>                             
                                     </td>
@@ -64,8 +64,7 @@ class Shopping extends Component {
                             )
                         })}
                     </tbody>
-                </table>
-               
+                </table>             
             </div>
         );
     }

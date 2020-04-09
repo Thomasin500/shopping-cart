@@ -20,13 +20,22 @@ const CartItem = props => {
     }
 
     return (
-        <div id="cart-item" >
-            name: { item.name }
-            price: { formatCurrency(item.price) }
-            quantity: { item.quantity}
-
-            {editButtons}
-        </div>
+        <tr id="cart-item">
+            <td>{item.name}</td>
+            <td align="center">
+                <div className="shopping-item-desc">{item.description}</div>
+            </td>
+            <td align="center">{formatCurrency(item.price)}</td>
+            <td align="center">
+                <span>
+                    {item.quantity}
+                </span>
+            </td>
+            <td align="center">{formatCurrency(item.price * parseInt(item.quantity))}</td>
+            <td align="center">
+                <span className="shopping-item-actions">{editButtons}</span>
+            </td>
+        </tr> 
     );
 }
 
