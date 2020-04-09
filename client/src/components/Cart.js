@@ -20,7 +20,7 @@ class Cart extends Component {
     }
 
     changeQuantity = (item, amount, item_index) => {
-        if ((item.quantity + amount) > 1) {
+        if ((item.quantity + amount) >= 1) {
             axios.put(`http://localhost:8000/cart/changeitemquantity/${item.id}/${amount}`).then((response) => {
                 const updatedItems = this.state.items.slice();
                 updatedItems[item_index].quantity += amount;

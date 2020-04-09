@@ -20,14 +20,17 @@ Stack:
 - Jest/Enzyme Testing
 - 100% Dockerized 
 
-## Instructions for Use
-TODO
-
-### Installation
-TODO
+### Installation (Assumes docker is installed)
+1) Clone repo to a local folder
+2) Navigate to that folder
+3) `docker-compose build`
+4) `docker-compose up`
+5) Visit http://localhost:3000/
 
 ### Testing
-TODO
+1) Navigate to the repo
+2) `cd client`
+3) `npm test`
 
 ## Dev Notes
 TODO

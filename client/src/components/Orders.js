@@ -36,7 +36,7 @@ class Orders extends Component {
                             let formattedHours = orderDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
                             return (
-                                <li className="order-item">
+                                <li key={order.id} className="order-item">
                                     <a key={index} href={`/orders/${order.id}`}>{order.name}</a>
                                     <span className="order-date">
                                         {formattedDate} @ {formattedHours}

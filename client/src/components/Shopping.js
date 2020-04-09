@@ -51,7 +51,7 @@ class Shopping extends Component {
                             const actions = item.added ? 'Added!' : (<button onClick={() => this.addItemToCart(item, index)}> Add To Cart </button>)
 
                             return (
-                                <tr>
+                                <tr key={item.id}>
                                     <td>{item.name}</td>
                                     <td align="center">
                                         <div className="shopping-item-desc">{item.description}</div>
