@@ -16,12 +16,18 @@ describe('Cart Item', () => {
             quantity: 2
         }
 
-        const wrapper = mount(<CartItem item={item} allowEdit={false} />);
+        const wrapper = mount(
+            <table>
+                <tbody>
+                    <CartItem item={item} allowEdit={false} />               
+                </tbody>
+            </table>
+        );
         const html = wrapper.find('#cart-item').html()
 
-        expect(html).toContain('name: Item One');
-        expect(html).toContain('price: $1.99'); //after formatting
-        expect(html).toContain('quantity: 2');
+        expect(html).toContain('Item One');
+        expect(html).toContain('$1.99'); //after formatting
+        expect(html).toContain('2');
         expect(wrapper.find('#edit-buttons').length).toEqual(0);
 
         done();
@@ -35,12 +41,18 @@ describe('Cart Item', () => {
             quantity: 3
         }
 
-        const wrapper = mount(<CartItem item={item} />);
+        const wrapper = mount(
+            <table>
+                <tbody>
+                    <CartItem item={item} />
+                </tbody>
+            </table>
+        );
         const html = wrapper.find('#cart-item').html()
 
-        expect(html).toContain('name: Item Two');
-        expect(html).toContain('price: $2.25'); //after formatting
-        expect(html).toContain('quantity: 3');
+        expect(html).toContain('Item Two');
+        expect(html).toContain('$2.25'); //after formatting
+        expect(html).toContain('3');
 
         expect(wrapper.find('#edit-buttons').length).toEqual(1);
 

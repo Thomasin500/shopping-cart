@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a simple online shopping application. With a hardcoded set of items for sale, a user can add items to their cart and enter into a checkout flow.
+This is a simple online shopping application. With a hardcoded set of items for sale, a user can add items to their cart, enter into a checkout flow, and see past orders.
 
 Features:
 - Ability to shop a variety of items for sale and add them to a shopping cart

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import formatCurrency from "../helpers/formatters"
 import CartItem from "./CartItem";
-
 import { withRouter } from "react-router-dom";
 
 class OrderDetails extends Component {

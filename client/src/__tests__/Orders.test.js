@@ -7,7 +7,6 @@ import MockAdapter from 'axios-mock-adapter';
 
 configure({ adapter: new Adapter() });
 
-
 describe('Orders', () => {
 
     it('renders an empty Order', done => {

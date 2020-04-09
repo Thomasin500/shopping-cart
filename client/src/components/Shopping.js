@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import formatCurrency from "../helpers/formatters"
+import formatCurrency from "../helpers/formatters";
 import '../css/Shopping.css';
 
 class Shopping extends Component {
@@ -22,7 +22,6 @@ class Shopping extends Component {
         axios.post(`http://localhost:8000/shopping/additemtocart/${item.id}`)
             .then((response) => {
                 console.log(`Added ${item.name} to your shopping cart!`);
-                //TODO some sort of notification
                 const updatedItems = this.state.items.slice();
                 updatedItems[index].added = true;
                 this.setState({ items: updatedItems });

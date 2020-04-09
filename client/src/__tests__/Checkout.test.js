@@ -1,18 +1,14 @@
 import React from "react";
 import Checkout from "../components/Checkout";
-import { configure, mount } from 'enzyme'
+import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 configure({ adapter: new Adapter() });
 
-//TODO make sure to test the actual checkout functions
-//order cart, gettotal Price etc....
-
 describe('Checkout', () => {
 
-    //TODO not finding total ID or something like that
     it('renders an empty Checkout Page', done => {
 
         const wrapper = mount(<Checkout />);
@@ -65,18 +61,11 @@ describe('Checkout', () => {
 
         return getPromise.then((postResponse) => {
 
-            //TODO it doesnt seem that the checkout has re-rendered after the state was update. maybe force a render?
-
-            const currentState = wrapper.state();
-
-            //TODO expect(wrapper.find('#checkout-container').length).toEqual(1);
-
-            //TODO here I should probably actually test the existance of the cartItems components and not just the state
+            const currentState = wrapper.state();      
 
             expect(currentState.items).toEqual(data);
             mock.restore();
             done();
-
         }); 
     }); 
 });

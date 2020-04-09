@@ -8,12 +8,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 configure({ adapter: new Adapter() });
 
-//TODO make sure to test the actual cart functions
-//change Quantity, gettotal Price, removeFrom Cart etc....
-
 describe('Order Details', () => {
 
-    //TODO not finding total ID or something like that
     it('renders an empty Order Details Page', done => {
 
         const wrapper = mount(
@@ -50,8 +46,6 @@ describe('Order Details', () => {
             }
         ];
         //total = 19.50
-
-        //TODO make sure this works without hardcoding the URL (order details component gets its orderID from the url)
         mock.onGet('http://localhost:8000/orders/1').reply(200, data);
 
         const getSpy = jest.spyOn(axios, 'get');
@@ -72,8 +66,6 @@ describe('Order Details', () => {
         return getPromise.then((postResponse) => {
 
             const currentState = wrapper.find('OrderDetails').state();
-
-            //TODO here I should probably actually test the existance of the cartItems components and not just the state
 
             expect(currentState.orderItems).toEqual(data);
             mock.restore();

@@ -1,6 +1,6 @@
 import React from "react";
 import Shopping from "../components/Shopping";
-import { configure, mount } from 'enzyme'
+import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
@@ -9,7 +9,6 @@ configure({ adapter: new Adapter() });
 
 describe('Shopping', () => {
 
-    //TODO not finding total ID or something like that
     it('renders an empty Shopping list', done => {
 
         const wrapper = mount(<Shopping />);
@@ -26,16 +25,19 @@ describe('Shopping', () => {
 
         const data = [
             {
+                id: 1,
                 name: 'Item One',
                 quantity: 1,
                 price: 1.00
             },
             {
+                id: 2,
                 name: 'Item Two',
                 quantity: 2,
                 price: 2.50
             },
             {
+                id: 3,
                 name: 'Item Three',
                 quantity: 3,
                 price: 4.50

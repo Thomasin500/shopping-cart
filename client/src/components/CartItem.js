@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from 'prop-types';
 import formatCurrency from "../helpers/formatters";
 
-//todo styling
 const CartItem = props => {
 
     const { item, changeQuantity, removeFromCart, allowEdit } = props;
