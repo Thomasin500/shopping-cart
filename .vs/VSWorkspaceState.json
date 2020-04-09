@@ -4,7 +4,11 @@
     "\\client",
     "\\client\\src",
     "\\client\\src\\components",
-    "\\server"
+    "\\client\\src\\css",
+    "\\db",
+    "\\server",
+    "\\server\\routes"
   ],
+  "SelectedNode": "\\client\\src\\components\\Checkout.js",
   "PreviewInSolutionExplorer": false
 }

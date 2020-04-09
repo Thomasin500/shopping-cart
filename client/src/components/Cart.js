@@ -73,7 +73,6 @@ class Cart extends Component {
                         </div>
                         <a className="checkout-link" href="/checkout">Checkout</a>
                     </div>
-
                 </div>
             );
         } else {

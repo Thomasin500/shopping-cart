@@ -25,7 +25,7 @@ class OrderDetails extends Component {
     }
 
     totalPrice = () => {
-        return this.state.orderItems.reduce((sum, item) => sum + (item.quantity * item.price), 0);
+        return Array.isArray(this.state.orderItems) ? this.state.orderItems.reduce((sum, item) => sum + (item.quantity * item.price), 0) : 0.00;
     }
 
     render() {
@@ -34,12 +34,30 @@ class OrderDetails extends Component {
 
         return (
             <div>
-                {orderItems.map((orderItem, index) => (
-                    <CartItem key={index} item={orderItem} allowEdit={false} />
-                ))}
 
-                Your Order Total is { formatCurrency(this.totalPrice())}
+                <h1>Order Details</h1>
 
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+
+                        {Array.isArray(orderItems) && orderItems.map((orderItem, index) => (
+                            <CartItem key={index} item={orderItem} allowEdit={false} />
+                        ))}
+                    </tbody>
+                </table>
+
+                <div className="totals-bar">
+                    <div id="cart-total">
+                        Order Total: {formatCurrency(this.totalPrice())}
+                    </div>
+                </div>
             </div>
         );
 

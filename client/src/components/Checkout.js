@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import axios from "axios";
 import CartItem from "./CartItem";
-import formatCurrency from "../helpers/formatters"
+import formatCurrency from "../helpers/formatters";
+import '../css/Cart.css';
 
 class Checkout extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            items: []
+            items: [],
+            orderPlaced: false
         };
     }
 
@@ -24,8 +26,7 @@ class Checkout extends Component {
 
     orderCart = () => {
         axios.post('http://localhost:8000/cart/order', {}).then((response) => {
-            //TODO probably go to a temporary order success screen
-            this.setState({ items: [] });
+            this.setState({ items: [], orderPlaced: true });
         });
     }
 
@@ -33,27 +34,37 @@ class Checkout extends Component {
 
         const { items } = this.state;
 
-        //TODO how to styling the cart?
-
         if (items.length) {
             return (
                 <div id="checkout-container">
                     <h1>Please review your order</h1>
 
-                    <div>
-                        {items.map((item, index) => (
-                            <CartItem key={index} item={item} allowEdit={false} />
-                        ))}
-                    </div >
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
 
-                    Your Total is { formatCurrency(this.totalPrice())}
+                            {Array.isArray(items) && items.map((item, index) => (
+                                <CartItem key={index} allowEdit={false} index={index} item={item} />
+                            ))}
+                        </tbody>
+                    </table>
 
-
-                    <button onClick={() => this.orderCart()}> To order these items please click here </button>
-
-
+                    <div className="totals-bar">
+                        <div id="cart-total">
+                            Your Total is {formatCurrency(this.totalPrice())}
+                        </div>
+                        <button className="checkout-link" onClick={() => this.orderCart()}> To order these items please click here </button>
+                    </div>
                 </div>
             );
+        } else if (this.state.orderPlaced) {
+            return <h1>You have successfully place your order!</h1>
         } else {
             return (
                 <div id="empty-checkout">
